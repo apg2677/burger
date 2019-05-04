@@ -16,9 +16,9 @@ var orm = {
         var col1 = "burger_name";
         var col2 = "devoured";
 
-        var queryStr = "INSERT INTO " = table + "(";
+        var queryStr = "INSERT INTO " + table + "(";
         queryStr += col1 + "," + col2 + ")";
-        queryStr += " Values(" + name + ", " + devored + ");";
+        queryStr += " Values(" + name + ", " + devoured + ");";
         console.log(queryStr);  
     }
    
