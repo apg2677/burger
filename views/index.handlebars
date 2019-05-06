@@ -1,3 +1,5 @@
+
+
 <h1>Good Burger</h1>
 
 <h2>Burgers not eaten</h2>
@@ -8,6 +10,14 @@
   {{> dog-block devour=true}}
   {{/unless}}
 
+  {{/each}}
+</ul>
+
+<ul>
+  {{#each burgers}}
+  {{#if devoured}}
+  {{> dog-block devour=false}}
+  {{/if}}
   {{/each}}
 </ul>
 
@@ -27,3 +37,28 @@
 
   <button id="btnSubmit" type="submit">Add Burger</button>
 </form>
+
+<script>
+$(".change-devoured").on("click", function (event) {
+			alert("Update!");
+			var id = $(this).data("id");
+			var newDevoured = $(this).data("newDevoured");
+
+			var newDevouredState = {
+				devoured: newDevoured
+			};
+
+			// Send the PUT request.
+			$.ajax("/api/burgers/" + id, {
+				type: "PUT",
+				data: newDevouredState
+			}).then(
+				function () {
+					console.log("changed devoured to", newDevoured);
+					// Reload the page to get the updated list
+					location.reload();
+				}
+			);
+		});
+
+</script>
