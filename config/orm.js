@@ -26,10 +26,31 @@ var orm = {
             }
             cb(result);
         });
+    },
+
+    updateOne: function(name, dev, cb) {
+        var table = "burgers";
+        var tempDev = !dev;
+        var queryString = "UPDATE " + table;
+
+        queryString += " SET ";
+        queryString += "devoured = " 
+        queryString += " WHERE ";
+        queryString += condition;
+    
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      }
     }
    
 
-}
+
 
 
 module.exports = orm;
