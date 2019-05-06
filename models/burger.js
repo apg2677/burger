@@ -9,7 +9,7 @@ var burger = {
     insertOne: function(n, d, cb ) {
         orm.insertOne(n,d, function(res) {
             cb(res);
-        })
+        });
     }
 
 }
