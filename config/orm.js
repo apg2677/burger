@@ -11,15 +11,21 @@ var orm = {
             
         });
     },
-    insertOne:function(name, devoured) {
+    insertOne:function(name, devoured, cb) {
         var table = "burgers";
         var col1 = "burger_name";
         var col2 = "devoured";
 
         var queryStr = "INSERT INTO " + table + "(";
         queryStr += col1 + "," + col2 + ")";
-        queryStr += " Values(" + name + ", " + devoured + ");";
+        queryStr += " Values('" + name + "', " + "'" + devoured + "');";
         console.log(queryStr);  
+        connection.query(queryStr, function(err, result) {
+            if(err) {
+                throw err;
+            }
+            cb(result);
+        });
     }
    
 
