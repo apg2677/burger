@@ -43,15 +43,23 @@ $(".change-devoured").on("click", function (event) {
 			// alert("Update!");
 			var id = $(this).data("id");
       console.log("id: " + id);
-			var newDevoured = $(this).data("test");
-      console.log("newDevoured: " + newDevoured);
+			var tempDevoured = $(this).data("test");
+      var newDevoured;
+      console.log("tempDevoured: " + tempDevoured);
+      if(tempDevoured===0) {
+        newDevoured=1;
+      }
+      else {
+        newDevoured=0;
+      }
+    
 			var newDevouredState = {
 				devoured: newDevoured
 			};
       console.log("newDevouredState " + JSON.stringify(newDevouredState));
 			// Send the PUT request.
 			$.ajax("/api/burgers/" + id, {
-				type: "POST",
+				type: "PUT",
 				data: newDevouredState
 			}).then(
 				function () {
