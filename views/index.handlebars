@@ -1,25 +1,32 @@
-
-
 <h1>Good Burger</h1>
 
 <h2>Burgers not eaten</h2>
 
-<ul>
-  {{#each burgers}}
-  {{#unless devoured}}
-  {{> dog-block devour=true}}
-  {{/unless}}
+<div class="row">
+  <div class="col-md-6">
+    <ul>
+      {{#each burgers}}
+      {{#unless devoured}}
+      {{> dog-block devour=true}}
+      {{/unless}}
 
-  {{/each}}
-</ul>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <ul>
+      {{#each burgers}}
+      {{#if devoured}}
+      {{> dog-block devour=false}}
+      {{/if}}
+      {{/each}}
+    </ul>
+  </div>
 
-<ul>
-  {{#each burgers}}
-  {{#if devoured}}
-  {{> dog-block devour=false}}
-  {{/if}}
-  {{/each}}
-</ul>
+</div>
+
+
+
 
 <h2>Add a burger</h2>
 <form class="create-form" action="api/burgers" method="POST">
@@ -39,35 +46,35 @@
 </form>
 
 <script>
-$(".change-devoured").on("click", function (event) {
-			// alert("Update!");
-			var id = $(this).data("id");
-      console.log("id: " + id);
-			var tempDevoured = $(this).data("test");
-      var newDevoured;
-      console.log("tempDevoured: " + tempDevoured);
-      if(tempDevoured===0) {
-        newDevoured=1;
+  $(".change-devoured").on("click", function (event) {
+    // alert("Update!");
+    var id = $(this).data("id");
+    console.log("id: " + id);
+    var tempDevoured = $(this).data("test");
+    var newDevoured;
+    console.log("tempDevoured: " + tempDevoured);
+    if (tempDevoured === 0) {
+      newDevoured = 1;
+    }
+    else {
+      newDevoured = 0;
+    }
+
+    var newDevouredState = {
+      devoured: newDevoured
+    };
+    console.log("newDevouredState " + JSON.stringify(newDevouredState));
+    // Send the PUT request.
+    $.ajax("/api/burgers/" + id, {
+      type: "PUT",
+      data: newDevouredState
+    }).then(
+      function () {
+        console.log("changed devoured to", newDevoured);
+        // Reload the page to get the updated list
+        location.reload();
       }
-      else {
-        newDevoured=0;
-      }
-    
-			var newDevouredState = {
-				devoured: newDevoured
-			};
-      console.log("newDevouredState " + JSON.stringify(newDevouredState));
-			// Send the PUT request.
-			$.ajax("/api/burgers/" + id, {
-				type: "PUT",
-				data: newDevouredState
-			}).then(
-				function () {
-					console.log("changed devoured to", newDevoured);
-					// Reload the page to get the updated list
-					location.reload();
-				}
-			);
-		});
+    );
+  });
 
 </script>
