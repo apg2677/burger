@@ -28,13 +28,18 @@ var orm = {
         });
     },
 
-    updateOne: function(name, dev, cb) {
+    updateOne: function(dev, condition, cb) {
         var table = "burgers";
+        console.log("dev: " + JSON.stringify(dev));
+        
         var tempDev = !dev;
+        console.log("dev: " + JSON.stringify(dev));
+        
+        
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
-        queryString += "devoured = " 
+        queryString += "devoured = " + tempDev;
         queryString += " WHERE ";
         queryString += condition;
     
