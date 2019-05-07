@@ -39,7 +39,7 @@ var orm = {
         var queryString = "UPDATE " + table;
 
         queryString += " SET ";
-        queryString += "devoured = " + dev;
+        queryString += "devoured = " + parseInt(dev.dev);
         queryString += " WHERE ";
         queryString += condition;
     
