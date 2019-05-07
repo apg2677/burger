@@ -1,3 +1,27 @@
-* {
-    border:1px solid black;
+.pod{
+    background: rgb(171, 232, 217);
+   
+}
+
+.topRow {
+    height:400px;
+}
+
+.outerPod {
+    background: #ccc;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+    
+ 
+}
+
+.container {
+    background: #ccc;
+    padding:10px;
+  
 }
