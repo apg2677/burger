@@ -30,27 +30,21 @@ var orm = {
 
     updateOne: function(dev, condition, cb) {
         var table = "burgers";
-       console.log("dev: " + JSON.stringify(dev));
-        
-        // var tempDev = !dev;
-        // console.log("dev: " + JSON.stringify(dev));
-        
-        
+       // console.log("dev: " + JSON.stringify(dev));
         var queryString = "UPDATE " + table;
-
         queryString += " SET ";
         queryString += "devoured = " + parseInt(dev.dev);
         queryString += " WHERE ";
         queryString += condition;
     
         console.log(queryString);
-        // connection.query(queryString, function(err, result) {
-        //   if (err) {
-        //     throw err;
-        //   }
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
     
-        //   cb(result);
-        // });
+          cb(result);
+        });
       }
     }
    
