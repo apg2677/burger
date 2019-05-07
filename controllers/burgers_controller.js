@@ -23,11 +23,11 @@ router.post("/api/burgers", function(req,res) {
     })
 });
 
-router.post("/api/burgers/:id", function(req, res) {
+router.put("/api/burgers/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
     console.log("condition", condition);
-    var dev = req.body;
+    var dev = req.body.devoured;
     console.log(dev);
     burger.updateOne({
       dev
